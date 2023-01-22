@@ -9,8 +9,8 @@ let choicesElement = document.getElementById("choices");
 let startBtn = document.getElementById("start");
 let submitBtn = document.getElementById("submit");
 let feedBack = document.getElementById("feedback");
-let sfxR = new Audio("assets/sfx/correct.wav");
-let sfxW = new Audio("assets/sfx/incorrect.wav");
+let sfxR = new Audio("./assets/sfx/correct.wav");
+let sfxW = new Audio("./assets/sfx/incorrect.wav");
 
 function clickQuestion() {
     if (this.value !== questions[questionInd].answer) {
