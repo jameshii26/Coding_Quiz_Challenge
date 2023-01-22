@@ -1,22 +1,22 @@
 function displayHighScores(){
-    let highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    let highScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-    highscores.sort(function(a, b) {
+    highScores.sort(function(a, b) {
         return b.score - a.score;
     })
 
-    highscores.forEach(function(score) {
+    highScores.forEach(function(score) {
         let li = document.createElement("li");
-        li.textContent = `${scores.initials} - ${scores.score}`
+        li.textContent = `${score.initials} - ${score.score}`
 
-        let ol = document.getElementById("score");
+        let ol = document.getElementById("highscores");
         ol.appendChild(li);
     })
 
 }
 
 function clearScores(){
-    localStorage.removeItem("score");
+    localStorage.removeItem("highscores");
     window.location.reload();
 
 }

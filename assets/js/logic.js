@@ -104,13 +104,13 @@ function saveScore() {
     console.log(initials);
 
     if (initials !== ""){
-        let score = JSON.parse(localStorage.getItem("score")) || [];
+        let highScores = JSON.parse(localStorage.getItem("highscores")) || [];
         let newScore = {
             score: time,
             initials: initials
         }
-        score.push(newScore);
-        localStorage.setItem("score", JSON.stringify(score));
+        highScores.push(newScore);
+        localStorage.setItem("highscores", JSON.stringify(highScores));
         window.location.href = "highscores.html";
     }
 
