@@ -20,10 +20,10 @@ function clickQuestion() {
             time = 0;
         }
         timerElement.textContent = time;
-        sfxW.play;
+        sfxW.play();
         feedBack.textContent = "Wrong"
     } else {
-        sfxR.play;
+        sfxR.play();
         feedBack.textContent = "Correct!";
     }
 
