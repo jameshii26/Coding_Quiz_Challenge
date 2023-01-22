@@ -1,10 +1,7 @@
-//
 let questionInd = 0;
 let time = questions.length * 15;
 let timerID;
 
-
-// 
 let initialElement = document.getElementById("initials");
 let quesElement = document.getElementById("questions");
 let timerElement = document.getElementById("time");
@@ -12,8 +9,8 @@ let choicesElement = document.getElementById("choices");
 let startBtn = document.getElementById("start");
 let submitBtn = document.getElementById("submit");
 let feedBack = document.getElementById("feedback");
-
 let sfxR = new Audio("assets/sfx/correct.wav");
+let sfxW = new Audio("assets/sfx/incorrect.wav");
 
 function clickQuestion() {
     if (this.value !== questions[questionInd].answer) {
@@ -23,6 +20,7 @@ function clickQuestion() {
             time = 0;
         }
         timerElement.textContent = time;
+        sfxW.play;
         feedBack.textContent = "Wrong"
     } else {
         sfxR.play;
@@ -38,19 +36,16 @@ function clickQuestion() {
     questionInd++;
 
     if (questionInd === questions.length) {
-        endQuiz()        
+        gameOver()        
     } else {
         getQuizQuestion();
     }
-
-
 }
 
+// getting the quiz questions
 function getQuizQuestion(){
     let currentQuestion = questions[questionInd];
-
     let titleElement = document.getElementById("question-title");
-
     titleElement.textContent = currentQuestion.title;
     choicesElement.innerHTML = "";
     currentQuestion.choices.forEach(function(choice, index) {
@@ -61,23 +56,21 @@ function getQuizQuestion(){
         choiceBtn.addEventListener("click", clickQuestion);
         choicesElement.append(choiceBtn);
     })
-
 }
 
-
-
-function startQuiz() {
+function gameStart() {
     let startScreenElement = document.getElementById("start-screen");
     startScreenElement.setAttribute("class","hide");
 
     quesElement.removeAttribute("class");
-
+// set the timer
     timerID = setInterval(clockTick, 1000)
     timerElement.textContent = time;
     getQuizQuestion();
 }
 
-function endQuiz() {
+function gameOver() {
+    // clear the timer to end the game
     clearInterval(timerID);
 
     let endScreenElement = document.getElementById("end-screen");
@@ -92,9 +85,9 @@ function endQuiz() {
 function clockTick () {
     time--;
     timerElement.textContent = time;
-
+// to end the game if the time runs out
     if(time <= 0){
-       endQuiz(); 
+       gameOver(); 
     }
 
 }
@@ -113,17 +106,15 @@ function saveScore() {
         localStorage.setItem("highscores", JSON.stringify(highScores));
         window.location.href = "highscores.html";
     }
-
 }
 
 function checkEnter(event) {
     if(event.key === "Enter") {
         saveScore();
     }
-
 }
 
-startBtn.addEventListener("click", startQuiz);
+startBtn.addEventListener("click", gameStart);
 
 submitBtn.addEventListener("click", saveScore);
 
