@@ -1,3 +1,4 @@
+// quiz question variable
 let questionInd = 0;
 let time = questions.length * 15;
 let timerID;
@@ -9,6 +10,7 @@ let choicesElement = document.getElementById("choices");
 let startBtn = document.getElementById("start");
 let submitBtn = document.getElementById("submit");
 let feedBack = document.getElementById("feedback");
+// set audio variable
 let sfxR = new Audio("./assets/sfx/correct.wav");
 let sfxW = new Audio("./assets/sfx/incorrect.wav");
 
@@ -20,9 +22,11 @@ function clickQuestion() {
             time = 0;
         }
         timerElement.textContent = time;
+        // play the audio for incorrect answer
         sfxW.play();
         feedBack.textContent = "Wrong"
     } else {
+        // to play the audio for correct answer
         sfxR.play();
         feedBack.textContent = "Correct!";
     }
@@ -89,7 +93,6 @@ function clockTick () {
     if(time <= 0){
        gameOver(); 
     }
-
 }
 
 function saveScore() {
